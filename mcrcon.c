@@ -149,6 +149,19 @@
     #include <netdb.h>
 #endif
 
+#ifndef D_DEFAULT_PORT
+	#define D_DEFAULT_PORT "25575"
+#endif
+
+#ifndef D_DEFAULT_HOST
+	#define D_DEFAULT_HOST ""
+#endif
+
+#ifndef D_DEFAULT_PWD
+	#define D_DEFAULT_PWD ""
+#endif
+
+
 /* absolute value macro
 #define absolute(x) (x < 0) ? (0 - x) : x
 */
@@ -232,9 +245,9 @@ int main(int argc, char *argv[])
     int opt, ret = 0;
     int terminal_mode = 0;
 
-    char *host = NULL;
-    char *pass = "";
-    char *port = "25575";
+    char *host = D_DEFAULT_HOST;
+    char *pass = D_DEFAULT_PWD; 
+    char *port = D_DEFAULT_PORT;
 
     if(argc < 2) usage();
 
@@ -327,7 +340,9 @@ void usage(void)
         "  -t\t\tTerminal mode. Acts as interactive terminal.\n"
         "  -p\t\tRcon password. Default: \"\".\n"
         "  -H\t\tHost address or ip.\n"
-        "  -P\t\tPort. Default: 25575.\n"
+        "  -P\t\tPort. Default: "
+		D_DEFAULT_PORT 
+        ".\n"
         "  -c\t\tDo not print colors. Disables bukkit color printing.\n"
     ,stdout);
 
